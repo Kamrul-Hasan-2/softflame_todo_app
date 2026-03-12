@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:free_health_camp/core/utils/app_colors.dart';
 import 'package:free_health_camp/core/utils/app_styles.dart';
-import '../../../../core/utils/size_config.dart';
 
 class CommonButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
   final double? width;
   final double? height;
@@ -25,17 +24,15 @@ class CommonButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonHeight =
-        height ?? SizeConfigs.getProportionateScreenHeight(50);
-
     return SizedBox(
       width: width ?? double.infinity,
-      height: buttonHeight,
+      height: height,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor:
           backgroundColor ?? Theme.of(context).primaryColor,
+          padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

@@ -1,45 +1,46 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color appBackground = Color(0xffFFFFFF);
-  static const Color primaryColor = Color(0xff008541);
-  static const Color secondaryColor = Color(0xfff89921);
-  static const Color offWhiteColor = Color(0xffFAF9F6);
-  static const Color borderColor = Color(0xfff5f5f5);
-  static const Color facebookBlue = Color(0xff415893);
-  static const Color googleBlue = Color(0xff5A94EE);
-  static const Color secondaryTwoColor = Color(0xffF6F6F6);
+  // Main Colors
+  static const Color primaryColor = Color(0xFF5053EB);
+  static const Color secondaryColor = Color(0xFF28A745);
+  static const Color appBackground = Color(0xFFFFFFFF);
+  static const Color successColor = Color(0xFF28A745);
+  static const Color errorColor = Color(0xFFDC3545);
 
-  static const Color successColor = Color(0xff27AE60);
-  static const Color primaryTextColor = Color(0xff000000);
-  static const Color secondaryTextColor = Color(0xff212121);
-  static const Color colorF14F4A = Color(0xffF14F4A);
+  // Neutral & Tints
+  static const Color neutralDark = Color(0xFF2D3E4E);
+  static const Color subtleTint = Color(0xFFF0F9F6);
+  static const Color primaryTransparent = Color(0x1A5053EB);
+  static const Color successTransparent = Color(0x1A28A745);
+  static const Color offColor = Color(0xFFCFCFCF);
 
-  static const Color white = Color(0xffffffff);
-  static const Color color0D2238 = Color(0xff0D2238);
-  static const Color black = Color(0xff000000);
-  static const Color color008541 = Color(0xff008541);
-  static const Color color80C2A0 = Color(0xff80C2A0);
+  // Borders & Dividers
+  static const Color borderColor = Color(0xFFCDCDCD);
+  static const Color dividerColor = Color(0xFFCDCDCD);
 
-  static const Color colorBBBBBB = Color(0xffBBBBBB);
-  static const Color color001B0D = Color(0xff001B0D);
-  static const Color colorEFEFEF = Color(0xffEFEFEF);
-  static const Color colorEDEDED = Color(0xffEDEDED);
-  static const Color colorF5F5F5 = Color(0xffF5F5F5);
-  static const Color colorFFFFFF = Color(0xffFFFFFF);
-  static const Color colorFBFBFB = Color(0xffFBFBFB);
-  static const Color color000000 = Color(0xff000000);
-  static const Color color888E9D = Color(0xff888E9D);
-  static const Color color030330 = Color(0xff030330);
-  static const Color colorE6F2EE = Color(0xffE6F2EE);
-  static const Color color777777 = Color(0xff777777);
-  static const Color color181D3D = Color(0xff181D3D);
-  static const Color color86909B = Color(0xff86909B);
-  static const Color color0F2018 = Color(0xff0F2018);
-  static const Color color333333 = Color(0xff333333);
-  static const Color colorE0E0E0 = Color(0xffE0E0E0);
-  static const Color color8B8B8B = Color(0xff8B8B8B);
-  static const Color colorCCE7D9 = Color(0xffCCE7D9);
+  // Text Colors
+  static const Color primaryTextColor = Color(0xFF2D3E4E);
+  static const Color secondaryTextColor = Color(0xFF2D3E4E);
+  static const Color lowTextColor = Color(0xFF9C9CA7);
+
+  // Social Media Colors
+  static const Color facebookBlue = Color(0xFF415893);
+  static const Color googleBlue = Color(0xFF5A94EE);
+
+  // Basic Colors
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+
+  // Legacy color aliases (mapped to palette colors)
+  static const Color colorF14F4A = errorColor; // Error
+  static const Color color80C2A0 = secondaryColor; // Success/Secondary
+  static const Color offWhiteColor = appBackground; // Off White
+  static const Color colorE0E0E0 = dividerColor; // Divider
+  static const Color colorBBBBBB = dividerColor; // Medium Grey
+  static const Color color0D2238 = primaryTextColor; // Dark Text
+  static const Color color888E9D = lowTextColor; // Low Text
+  static const Color colorFBFBFB = appBackground; // Almost White
+  static const Color colorF5F5F5 = appBackground; // Light Background
 }
