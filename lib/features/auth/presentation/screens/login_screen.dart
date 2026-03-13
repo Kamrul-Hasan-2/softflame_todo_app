@@ -217,7 +217,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         alignment: Alignment.centerRight,
                         child: TextButton(
                           onPressed: () {
-                            // Handle forgot PIN
+                            context.pushNamed(AppRoute.forgotPin.name);
                           },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,

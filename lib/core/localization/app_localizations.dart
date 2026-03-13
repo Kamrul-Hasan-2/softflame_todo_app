@@ -59,6 +59,14 @@ class AppLocalizations {
       'submit': 'Submit',
       'already_have_account': 'Already have an account?',
 
+      // Forgot PIN
+      'forgot_pin_title': 'Forgot PIN',
+      'verify_your_phone': 'Verify your phone',
+      'enter_registered_phone': 'Enter your registered phone number to verify.',
+      'reset_pin': 'Reset PIN',
+      'reset_pin_subtitle': 'Create a new 6-digit code for your account.',
+      'pin_reset_success': 'PIN reset successfully',
+
       // Validation
       'phone_required': 'Phone number is required',
       'phone_invalid': 'Please enter a valid phone number',
@@ -128,6 +136,14 @@ class AppLocalizations {
       'previous': 'পূর্ববর্তী',
       'submit': 'জমা দিন',
       'already_have_account': 'ইতিমধ্যে একটি অ্যাকাউন্ট আছে?',
+
+      // Forgot PIN
+      'forgot_pin_title': 'পিন ভুলে গেছি',
+      'verify_your_phone': 'আপনার ফোন যাচাই করুন',
+      'enter_registered_phone': 'যাচাই করতে আপনার নিবন্ধিত ফোন নম্বর লিখুন.',
+      'reset_pin': 'পিন রিসেট করুন',
+      'reset_pin_subtitle': 'আপনার অ্যাকাউন্টের জন্য একটি নতুন ৬-সংখ্যার কোড তৈরি করুন।',
+      'pin_reset_success': 'পিন সফলভাবে রিসেট হয়েছে',
 
       // Validation
       'phone_required': 'ফোন নম্বর আবশ্যক',
@@ -199,9 +215,21 @@ class AppLocalizations {
   String get submit => translate('submit');
   String get alreadyHaveAccount => translate('already_have_account');
 
+  // Forgot PIN
+  String get forgotPinTitle => translate('forgot_pin_title');
+  String get verifyYourPhone => translate('verify_your_phone');
+  String get enterRegisteredPhone => translate('enter_registered_phone');
+  String get resetPin => translate('reset_pin');
+  String get resetPinSubtitle => translate('reset_pin_subtitle');
+  String get pinResetSuccess => translate('pin_reset_success');
+
   String stepOf(int current, int total) {
     if (locale.languageCode == 'bn') {
-      return '${localizedNumber(total)} এর মধ্যে ${localizedNumber(current)}য় ধাপ';
+      const ordinalSuffixes = ['ম', 'য়', 'য়', 'র্থ', 'ম'];
+      final suffix = (current >= 1 && current <= ordinalSuffixes.length)
+          ? ordinalSuffixes[current - 1]
+          : 'তম';
+      return '${localizedNumber(total)}টির মধ্যে ${localizedNumber(current)}$suffix ধাপ';
     }
 
     return translate('step_of')

@@ -1,3 +1,4 @@
+import 'package:free_health_camp/features/auth/presentation/screens/forgot_pin_screen.dart';
 import 'package:free_health_camp/features/auth/presentation/screens/login_screen.dart';
 import 'package:free_health_camp/features/auth/presentation/screens/registration_screen.dart';
 import 'package:free_health_camp/features/splash/presentation/screens/splash_screen.dart';
@@ -11,6 +12,7 @@ enum AppRoute {
   splash,
   login,
   registration,
+  forgotPin,
   todo
 }
 
@@ -33,6 +35,11 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/registration',
         name: AppRoute.registration.name,
         builder: (context, state) => const RegistrationScreen(),
+      ),
+      GoRoute(
+        path: '/forgot-pin',
+        name: AppRoute.forgotPin.name,
+        builder: (context, state) => const ForgotPinScreen(),
       ),
       GoRoute(
         path: '/todo',
