@@ -189,7 +189,7 @@ class RegistrationStep2Widget extends StatelessWidget {
                           ),
                         ),
                 ),
-                SizedBox(height: SizeConfigs.getProportionateScreenHeight(264)),
+                SizedBox(height: SizeConfigs.getProportionateScreenHeight(256)),
                 CommonButton(
                   onPressed: onVerify,
                   text: localizations.verify,

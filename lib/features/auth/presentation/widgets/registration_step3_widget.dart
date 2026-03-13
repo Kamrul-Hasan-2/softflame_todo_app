@@ -153,7 +153,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
                 ),
               ),
 
-              SizedBox(height: SizeConfigs.getProportionateScreenHeight(254)),
+              SizedBox(height: SizeConfigs.getProportionateScreenHeight(204)),
 
               // Set PIN Button
               CommonButton(
