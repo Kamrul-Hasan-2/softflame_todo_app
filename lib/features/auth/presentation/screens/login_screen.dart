@@ -9,6 +9,7 @@ import '../../../../core/routes/routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../../core/utils/snackbar_utils.dart';
 import '../../../../core/utils/validators.dart';
 import '../providers/auth_providers.dart';
 import '../widgets/common_button.dart';
@@ -32,28 +33,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     SizeConfigs.init(context);
     final localizations = AppLocalizations.of(context)!;
-    
+
     // Listen to auth state changes
     ref.listen<dynamic>(authProvider, (previous, next) {
       if (next.errorMessage != null) {
-        // Show error message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(next.errorMessage!),
-            backgroundColor: AppColors.colorF14F4A,
-          ),
-        );
+        SnackbarUtils.showError(context, next.errorMessage!);
         ref.read(authProvider.notifier).clearError();
       }
-      
+
       if (next.isAuthenticated) {
         // Navigate to todo screen on successful login
         context.goNamed(AppRoute.todo.name);
       }
     });
-    
+
     final authState = ref.watch(authProvider);
-    
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -65,15 +60,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 // Language Toggle Button
                 const Align(
                   alignment: Alignment.centerRight,
                   child: LanguageToggleButton(),
                 ),
-                
 
-                
                 // Logo with text
                 Center(
                   child: Column(
@@ -104,9 +96,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ],
                   ),
                 ),
-                
+
                 SizedBox(height: SizeConfigs.getProportionateScreenHeight(16)),
-                
+
                 // Tagline
                 Center(
                   child: Text(
@@ -118,9 +110,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                 ),
-                
+
                 SizedBox(height: SizeConfigs.getProportionateScreenHeight(16)),
-                
+
                 // Welcome back title
                 Text(
                   localizations.welcome,
@@ -130,9 +122,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     color: AppColors.primaryTextColor,
                   ),
                 ),
-                
+
                 SizedBox(height: SizeConfigs.getProportionateScreenHeight(8)),
-                
+
                 // Subtitle
                 Text(
                   localizations.pleaseSignIn,
@@ -142,9 +134,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                
+
                 SizedBox(height: SizeConfigs.getProportionateScreenHeight(24)),
-                
+
                 // Form
                 Form(
                   key: _formKey,
@@ -160,13 +152,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(8)),
-                      
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(8)),
+
                       // Phone Number Input
                       CommonTextField(
                         controller: _phoneController,
                         hintText: localizations.phoneHint,
-
                         keyboardType: TextInputType.phone,
                         validator: Validators.validatePhone,
                         prefixIcon: Container(
@@ -182,7 +174,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(width: SizeConfigs.getProportionateScreenWidth(8)),
+                              SizedBox(
+                                  width:
+                                      SizeConfigs.getProportionateScreenWidth(
+                                          8)),
                               Container(
                                 width: 2,
                                 height: 54,
@@ -192,9 +187,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                       ),
-                      
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(12)),
-                      
+
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(12)),
+
                       // PIN Label
                       Text(
                         localizations.pin,
@@ -204,18 +200,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(8)),
-                      
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(8)),
+
                       // PIN Input
                       CommonTextField(
                         controller: _pinController,
                         hintText: localizations.pinHint,
                         keyboardType: TextInputType.number,
                         obscureText: !_isPinVisible,
-                        validator: (value) => Validators.validatePin(value, length: 6),
+                        validator: (value) =>
+                            Validators.validatePin(value, length: 6),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _isPinVisible ? Icons.visibility : Icons.visibility_off,
+                            _isPinVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: AppColors.color888E9D,
                           ),
                           onPressed: () {
@@ -225,9 +225,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           },
                         ),
                       ),
-                      
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(12)),
-                      
+
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(12)),
+
                       // Forgot PIN?
                       Align(
                         alignment: Alignment.centerRight,
@@ -250,18 +251,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                       ),
-                      
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(24)),
-                      
+
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(24)),
+
                       // Sign In Button
                       CommonButton(
                         onPressed: authState.isLoading ? null : _handleSignIn,
-                        text: authState.isLoading ? localizations.loading : localizations.signIn,
+                        text: authState.isLoading
+                            ? localizations.loading
+                            : localizations.signIn,
                         backgroundColor: AppColors.primaryColor,
                       ),
-                      
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(24)),
-                      
+
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(12)),
+
                       // Or divider
                       Row(
                         children: [
@@ -290,9 +295,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ],
                       ),
-                      
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(24)),
-                      
+
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(12)),
+
                       // Sign Up Button
                       SizedBox(
                         width: double.infinity,
@@ -308,7 +314,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             backgroundColor: AppColors.white,
                             foregroundColor: AppColors.primaryTextColor,
                             padding: EdgeInsets.symmetric(
-                              vertical: SizeConfigs.getProportionateScreenHeight(14),
+                              vertical:
+                                  SizeConfigs.getProportionateScreenHeight(14),
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -324,8 +331,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                       ),
-                      
-                      SizedBox(height: SizeConfigs.getProportionateScreenHeight(32)),
+
+                      SizedBox(
+                          height: SizeConfigs.getProportionateScreenHeight(32)),
                     ],
                   ),
                 ),
@@ -342,11 +350,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       // Use auth provider to login
       final phoneNumber = _phoneController.text.trim();
       final pin = _pinController.text.trim();
-      
+
       ref.read(authProvider.notifier).login(
-        phoneNumber: phoneNumber,
-        pin: pin,
-      );
+            phoneNumber: phoneNumber,
+            pin: pin,
+          );
     }
   }
 

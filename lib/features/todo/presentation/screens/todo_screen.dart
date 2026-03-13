@@ -23,7 +23,7 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfigs.init(context);
-    
+
     final todoState = ref.watch(todoProvider);
     final filteredTodos = _getFilteredTodos(todoState.todos);
     final completedCount = todoState.completedTodos.length;
@@ -49,7 +49,6 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
               : Column(
                   children: [
                     _buildFilterChips(pendingCount, completedCount),
-
                     Expanded(
                       child: filteredTodos.isEmpty
                           ? _buildEmptyState()
@@ -74,7 +73,7 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
 
   Widget _buildFilterChips(int pendingCount, int completedCount) {
     final todoState = ref.watch(todoProvider);
-    
+
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: SizeConfigs.getProportionateScreenWidth(16),
@@ -161,7 +160,6 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
     }
   }
 
-
   Widget _buildErrorState(String message) {
     return Center(
       child: Column(
@@ -231,7 +229,7 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
             description: result['description'],
             dueDate: result['dueDate'],
           );
-      
+
       if (mounted) {
         SnackbarUtils.showSuccess(context, 'Todo added successfully!');
       }
@@ -257,9 +255,9 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
         description: result['description'],
         dueDate: result['dueDate'],
       );
-      
+
       await ref.read(todoProvider.notifier).updateTodo(updatedTodo);
-      
+
       if (mounted) {
         SnackbarUtils.showSuccess(context, 'Todo updated successfully!');
       }
@@ -305,9 +303,9 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
 
     if (confirmed == true && mounted) {
       await ref.read(todoProvider.notifier).deleteTodo(id);
-      
+
       if (mounted) {
-        SnackbarUtils.showError(context, 'Todo deleted successfully!');
+        SnackbarUtils.showSuccess(context, 'Todo deleted successfully!');
       }
     }
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../../core/utils/validators.dart';
 import 'common_button.dart';
 import 'common_text_field.dart';
 
@@ -20,7 +21,8 @@ class RegistrationStep3Widget extends StatefulWidget {
   });
 
   @override
-  State<RegistrationStep3Widget> createState() => _RegistrationStep3WidgetState();
+  State<RegistrationStep3Widget> createState() =>
+      _RegistrationStep3WidgetState();
 }
 
 class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
@@ -83,15 +85,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
                 hintText: "123456",
                 keyboardType: TextInputType.number,
                 obscureText: !_isPinVisible,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'PIN is required';
-                  }
-                  if (value.length < 6) {
-                    return 'PIN must be at least 6 digits';
-                  }
-                  return null;
-                },
+                validator: Validators.validate6DigitPin,
                 suffixIcon: IconButton(
                   icon: Icon(
                     _isPinVisible ? Icons.visibility : Icons.visibility_off,
@@ -125,15 +119,11 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
                 hintText: "123456",
                 keyboardType: TextInputType.number,
                 obscureText: !_isConfirmPinVisible,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please confirm your PIN';
-                  }
-                  if (value != widget.pinController.text) {
-                    return 'PINs do not match';
-                  }
-                  return null;
-                },
+                validator: (value) => Validators.validateConfirmPin(
+                  value,
+                  widget.pinController.text,
+                  length: 6,
+                ),
                 suffixIcon: IconButton(
                   icon: Icon(
                     _isConfirmPinVisible

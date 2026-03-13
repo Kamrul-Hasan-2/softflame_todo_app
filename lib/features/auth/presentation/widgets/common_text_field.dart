@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../../core/utils/input_decoration_utils.dart';
 
 class CommonTextField extends StatelessWidget {
   final String hintText;
@@ -14,6 +15,8 @@ class CommonTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool readOnly;
   final int maxLines;
+  final ValueChanged<String>? onChanged;
+  final EdgeInsetsGeometry? contentPadding;
 
   const CommonTextField({
     super.key,
@@ -27,6 +30,8 @@ class CommonTextField extends StatelessWidget {
     this.onTap,
     this.readOnly = false,
     this.maxLines = 1,
+    this.onChanged,
+    this.contentPadding,
   });
 
   @override
@@ -39,61 +44,17 @@ class CommonTextField extends StatelessWidget {
       readOnly: readOnly,
       maxLines: maxLines,
       onTap: onTap,
+      onChanged: onChanged,
       style: AppStyles.normalTextStyle.copyWith(
         fontSize: 16,
         color: AppColors.color0D2238,
         fontWeight: FontWeight.w500,
       ),
-      decoration: InputDecoration(
+      decoration: InputDecorationUtils.build(
         hintText: hintText,
-        hintStyle: AppStyles.normalTextStyle.copyWith(
-          fontSize: 16,
-          color: AppColors.colorBBBBBB,
-          fontWeight: FontWeight.w400,
-        ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        filled: true,
-        fillColor: AppColors.colorFBFBFB,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.colorE0E0E0,
-            width: 1,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.colorE0E0E0,
-            width: 1,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.primaryColor,
-            width: 1.5,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.colorF14F4A,
-            width: 1,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.colorF14F4A,
-            width: 1.5,
-          ),
-        ),
+        contentPadding: contentPadding,
       ),
     );
   }

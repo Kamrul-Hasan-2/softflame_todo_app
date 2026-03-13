@@ -8,6 +8,7 @@ import '../../../../core/routes/routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../../core/utils/snackbar_utils.dart';
 import '../providers/auth_providers.dart';
 import '../widgets/registration_step1_widget.dart';
 import '../widgets/registration_step2_widget.dart';
@@ -31,11 +32,11 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   // Step 2: OTP
   final GlobalKey<FormState> _otpFormKey = GlobalKey<FormState>();
   final List<TextEditingController> _otpControllers = List.generate(
-    6,
+    4,
     (index) => TextEditingController(),
   );
   final List<FocusNode> _otpFocusNodes = List.generate(
-    6,
+    4,
     (index) => FocusNode(),
   );
   int _resendTimer = 50;
@@ -101,29 +102,20 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   }
 
   void _handleVerifyOTP() {
+    final localizations = AppLocalizations.of(context)!;
     final otp = _otpControllers.map((c) => c.text).join();
-    if (otp.length == 6) {
+    if (otp.length == 4) {
       // Simulate OTP verification
       _nextStep();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enter complete 6-digit OTP'),
-          backgroundColor: AppColors.colorF14F4A,
-        ),
-      );
+      SnackbarUtils.showError(context, localizations.otpIncomplete);
     }
   }
 
   void _handleSetPIN() {
     if (_pinFormKey.currentState!.validate()) {
       if (_pinController.text != _confirmPinController.text) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('PINs do not match'),
-            backgroundColor: AppColors.colorF14F4A,
-          ),
-        );
+        SnackbarUtils.showError(context, 'PINs do not match');
         return;
       }
 
@@ -132,9 +124,9 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
       final pin = _pinController.text.trim();
 
       ref.read(authProvider.notifier).register(
-        phoneNumber: phoneNumber,
-        pin: pin,
-      );
+            phoneNumber: phoneNumber,
+            pin: pin,
+          );
     }
   }
 
@@ -146,12 +138,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
     // Listen to auth state for registration completion
     ref.listen<dynamic>(authProvider, (previous, next) {
       if (next.errorMessage != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(next.errorMessage!),
-            backgroundColor: AppColors.colorF14F4A,
-          ),
-        );
+        SnackbarUtils.showError(context, next.errorMessage!);
         ref.read(authProvider.notifier).clearError();
       }
 
@@ -167,7 +154,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
         backgroundColor: AppColors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 20, top: 8, bottom:8),
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.colorE0E0E0, width: 1),
@@ -175,7 +162,8 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
             ),
             child: IconButton(
               padding: EdgeInsets.zero,
-              icon: const Icon(Icons.arrow_back, color: AppColors.primaryTextColor, size: 20),
+              icon: const Icon(Icons.arrow_back,
+                  color: AppColors.primaryTextColor, size: 20),
               onPressed: () {
                 if (_currentStep > 0) {
                   setState(() {
@@ -268,11 +256,9 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                     onVerify: _handleVerifyOTP,
                     onResend: () {
                       _startResendTimer();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('OTP resent successfully'),
-                          backgroundColor: AppColors.primaryColor,
-                        ),
+                      SnackbarUtils.showInfo(
+                        context,
+                        localizations.otpResentSuccess,
                       );
                     },
                   ),
