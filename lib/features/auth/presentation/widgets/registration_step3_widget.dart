@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_styles.dart';
 import '../../../../core/utils/size_config.dart';
@@ -31,10 +33,12 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: SizeConfigs.getProportionateScreenWidth(24),
+          horizontal: SizeConfigs.getProportionateScreenWidth(20),
         ),
         child: Form(
           key: widget.formKey,
@@ -45,7 +49,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
 
               // Title
               Text(
-                'Create Security PIN',
+                localizations.createSecurityPin,
                 style: AppStyles.headingTextStyle.copyWith(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -57,7 +61,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
 
               // Subtitle
               Text(
-                'A Simple 6-digit code to lock you account',
+                localizations.createPinSubtitle,
                 style: AppStyles.normalTextStyle.copyWith(
                   fontSize: 14,
                   color: AppColors.color888E9D,
@@ -69,7 +73,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
 
               // Set PIN Label
               Text(
-                'Set your PIN',
+                localizations.pin,
                 style: AppStyles.normalTextStyle.copyWith(
                   fontSize: 16,
                   color: AppColors.color0D2238,
@@ -82,13 +86,19 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
               // Set PIN Input
               CommonTextField(
                 controller: widget.pinController,
-                hintText: "123456",
+                hintText: localizations.pinHint,
                 keyboardType: TextInputType.number,
                 obscureText: !_isPinVisible,
                 validator: Validators.validate6DigitPin,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(6),
+                ],
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _isPinVisible ? Icons.visibility : Icons.visibility_off,
+                    _isPinVisible
+                        ? Icons.visibility
+                        : Icons.visibility_outlined,
                     color: AppColors.color888E9D,
                   ),
                   onPressed: () {
@@ -103,7 +113,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
 
               // Rewrite PIN Label
               Text(
-                'Rewrite your PIN',
+                localizations.rewritePin,
                 style: AppStyles.normalTextStyle.copyWith(
                   fontSize: 16,
                   color: AppColors.color0D2238,
@@ -116,7 +126,7 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
               // Rewrite PIN Input
               CommonTextField(
                 controller: widget.confirmPinController,
-                hintText: "123456",
+                hintText: localizations.pinHint,
                 keyboardType: TextInputType.number,
                 obscureText: !_isConfirmPinVisible,
                 validator: (value) => Validators.validateConfirmPin(
@@ -124,11 +134,15 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
                   widget.pinController.text,
                   length: 6,
                 ),
+                inputFormatters:  [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(6),
+                ],
                 suffixIcon: IconButton(
                   icon: Icon(
                     _isConfirmPinVisible
                         ? Icons.visibility
-                        : Icons.visibility_off,
+                        : Icons.visibility_outlined,
                     color: AppColors.color888E9D,
                   ),
                   onPressed: () {
@@ -139,12 +153,13 @@ class _RegistrationStep3WidgetState extends State<RegistrationStep3Widget> {
                 ),
               ),
 
-              SizedBox(height: SizeConfigs.getProportionateScreenHeight(32)),
+              SizedBox(height: SizeConfigs.getProportionateScreenHeight(254)),
 
               // Set PIN Button
               CommonButton(
                 onPressed: widget.onSetPIN,
-                text: 'Set PIN  →',
+                text: '${localizations.complete}  →',
+                height: SizeConfigs.getProportionateScreenHeight(56),
                 backgroundColor: AppColors.primaryColor,
               ),
 

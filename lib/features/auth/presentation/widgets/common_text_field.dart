@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_styles.dart';
@@ -17,6 +18,7 @@ class CommonTextField extends StatelessWidget {
   final int maxLines;
   final ValueChanged<String>? onChanged;
   final EdgeInsetsGeometry? contentPadding;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CommonTextField({
     super.key,
@@ -32,6 +34,7 @@ class CommonTextField extends StatelessWidget {
     this.maxLines = 1,
     this.onChanged,
     this.contentPadding,
+    this.inputFormatters,
   });
 
   @override
@@ -45,6 +48,7 @@ class CommonTextField extends StatelessWidget {
       maxLines: maxLines,
       onTap: onTap,
       onChanged: onChanged,
+      inputFormatters: inputFormatters,
       style: AppStyles.normalTextStyle.copyWith(
         fontSize: 16,
         color: AppColors.color0D2238,

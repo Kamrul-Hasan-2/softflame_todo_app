@@ -113,9 +113,11 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   }
 
   void _handleSetPIN() {
+    final localizations = AppLocalizations.of(context)!;
+
     if (_pinFormKey.currentState!.validate()) {
       if (_pinController.text != _confirmPinController.text) {
-        SnackbarUtils.showError(context, 'PINs do not match');
+        SnackbarUtils.showError(context, localizations.pinsDoNotMatch);
         return;
       }
 
@@ -154,7 +156,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
         backgroundColor: AppColors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 20, top: 8, bottom:8),
+          padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.colorE0E0E0, width: 1),
@@ -197,7 +199,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
             // Step Indicator
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: SizeConfigs.getProportionateScreenWidth(24),
+                horizontal: SizeConfigs.getProportionateScreenWidth(20),
                 vertical: SizeConfigs.getProportionateScreenHeight(16),
               ),
               child: Column(

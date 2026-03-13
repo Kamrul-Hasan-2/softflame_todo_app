@@ -49,6 +49,11 @@ class AppLocalizations {
       'otp_incomplete': 'Please enter complete 4-digit OTP',
       'otp_resent_success': 'OTP resent successfully',
       'step_of': 'Step {{current}} of {{total}}',
+      'create_security_pin': 'Create Security PIN',
+      'create_pin_subtitle': 'Create a 6-digit code to lock your account.',
+      'rewrite_pin': 'Rewrite PIN',
+      'complete': 'Complete',
+      'pins_do_not_match': 'PINs do not match',
       'next': 'Next',
       'previous': 'Previous',
       'submit': 'Submit',
@@ -113,6 +118,12 @@ class AppLocalizations {
       'otp_incomplete': 'অনুগ্রহ করে সম্পূর্ণ 4-সংখ্যার OTP লিখুন',
       'otp_resent_success': 'OTP আবার পাঠানো হয়েছে',
       'step_of': 'ধাপ {{current}} এর {{total}}',
+      'create_security_pin': 'নিরাপত্তা পিন তৈরি করুন',
+      'create_pin_subtitle':
+          'আপনার অ্যাকাউন্ট লক করতে একটি ৬-সংখ্যার কোড তৈরি করুন।',
+      'rewrite_pin': 'পিন পুনরায় লিখুন',
+      'complete': 'সম্পূর্ণ',
+      'pins_do_not_match': 'দুটি পিন এক নয়',
       'next': 'পরবর্তী',
       'previous': 'পূর্ববর্তী',
       'submit': 'জমা দিন',
@@ -178,6 +189,11 @@ class AppLocalizations {
   String get verify => translate('verify');
   String get otpIncomplete => translate('otp_incomplete');
   String get otpResentSuccess => translate('otp_resent_success');
+  String get createSecurityPin => translate('create_security_pin');
+  String get createPinSubtitle => translate('create_pin_subtitle');
+  String get rewritePin => translate('rewrite_pin');
+  String get complete => translate('complete');
+  String get pinsDoNotMatch => translate('pins_do_not_match');
   String get next => translate('next');
   String get previous => translate('previous');
   String get submit => translate('submit');

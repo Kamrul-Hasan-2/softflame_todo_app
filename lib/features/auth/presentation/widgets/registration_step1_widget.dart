@@ -26,7 +26,7 @@ class RegistrationStep1Widget extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: SizeConfigs.getProportionateScreenWidth(24),
+          horizontal: SizeConfigs.getProportionateScreenWidth(20),
         ),
         child: Form(
           key: formKey,
@@ -57,7 +57,7 @@ class RegistrationStep1Widget extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: SizeConfigs.getProportionateScreenHeight(16)),
+              SizedBox(height: SizeConfigs.getProportionateScreenHeight(32)),
 
               // Phone Number Label
               Text(
@@ -116,11 +116,12 @@ class RegistrationStep1Widget extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: SizeConfigs.getProportionateScreenHeight(320)),
+              SizedBox(height: SizeConfigs.getProportionateScreenHeight(294)),
 
               // Next Button
               CommonButton(
                 onPressed: onSendOTP,
+                height: SizeConfigs.getProportionateScreenHeight(56),
                 text: '${localizations.next}  →',
                 backgroundColor: AppColors.primaryColor,
               ),

@@ -55,11 +55,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: SizeConfigs.getProportionateScreenWidth(24),
+              horizontal: SizeConfigs.getProportionateScreenWidth(20),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: SizeConfigs.getProportionateScreenHeight(16)),
                 // Language Toggle Button
                 const Align(
                   alignment: Alignment.centerRight,
@@ -75,24 +76,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         height: SizeConfigs.getProportionateScreenHeight(106),
                         width: SizeConfigs.getProportionateScreenWidth(156),
                       ),
-                      //SizedBox(height: SizeConfigs.getProportionateScreenHeight(12)),
-                      // Text(
-                      //   'FREE HEALTH CARE',
-                      //   style: AppStyles.normalTextStyle.copyWith(
-                      //     fontSize: 14,
-                      //     fontWeight: FontWeight.w700,
-                      //     color: AppColors.primaryTextColor,
-                      //     letterSpacing: 0.5,
-                      //   ),
-                      // ),
-                      // Text(
-                      //   'By AllTrianz Private Limited',
-                      //   style: AppStyles.normalTextStyle.copyWith(
-                      //     fontSize: 10,
-                      //     fontWeight: FontWeight.w400,
-                      //     color: AppColors.lowTextColor,
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),

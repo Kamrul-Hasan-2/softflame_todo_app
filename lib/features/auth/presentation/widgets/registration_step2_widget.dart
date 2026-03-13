@@ -35,7 +35,7 @@ class RegistrationStep2Widget extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: SizeConfigs.getProportionateScreenWidth(12),
+          horizontal: SizeConfigs.getProportionateScreenWidth(20),
         ),
         child: Form(
           key: formKey,
@@ -59,7 +59,7 @@ class RegistrationStep2Widget extends StatelessWidget {
                 Text(
                   localizations.otpInstruction,
                   style: AppStyles.normalTextStyle.copyWith(
-                    fontSize: 15,
+                    fontSize: 14,
                     height: 1.4,
                     color: AppColors.lowTextColor,
                     fontWeight: FontWeight.w400,
@@ -76,7 +76,7 @@ class RegistrationStep2Widget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                    height: SizeConfigs.getProportionateScreenHeight(22)),
+                    height: SizeConfigs.getProportionateScreenHeight(32)),
                 Text(
                   localizations.verificationCode,
                   style: AppStyles.normalTextStyle.copyWith(
@@ -98,7 +98,7 @@ class RegistrationStep2Widget extends StatelessWidget {
                       ),
                       child: SizedBox(
                         width:
-                            SizeConfigs.getProportionateScreenWidth(54),
+                            SizeConfigs.getProportionateScreenWidth(75),
                         height:
                             SizeConfigs.getProportionateScreenHeight(48),
                         child: TextFormField(
@@ -189,7 +189,7 @@ class RegistrationStep2Widget extends StatelessWidget {
                           ),
                         ),
                 ),
-                SizedBox(height: SizeConfigs.getProportionateScreenHeight(254)),
+                SizedBox(height: SizeConfigs.getProportionateScreenHeight(264)),
                 CommonButton(
                   onPressed: onVerify,
                   text: localizations.verify,
